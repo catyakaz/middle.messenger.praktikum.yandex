@@ -1,0 +1,28 @@
+@import '../../../styles/main.scss';
+
+$marginMessage: 15px;
+
+.message {
+  font-size: 10px;
+  width: 100px;
+  padding: 5px;
+  margin-top: $marginMessage;
+  margin-bottom: $marginMessage;
+
+  &__user_type_auth {
+    margin-right: $marginMessage;
+    border-radius: 5px 0 5px 5px;
+    border: 1px solid #eaecf0;
+    align-self: flex-end;
+    background-color: #ffffff;
+    color: #9099ad;
+  }
+
+  &__user_type_notAuth {
+    margin-left: $marginMessage;
+    background-color: $purple;
+    border-radius: 0 5px 5px 5px;
+    align-self: flex-start;
+    color: #ffffff;
+  }
+}

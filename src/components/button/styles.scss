@@ -1,0 +1,26 @@
+@import '../../../styles/main.scss';
+
+.button {
+    @include h3;
+    width: 300px;
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 24px;
+    border: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &_purple {
+        background-color: $purple;
+        color: $white
+    }
+
+    &_white {
+        background-color: $white;
+        color: $black;
+        border: 1px solid $black;
+    }
+}
