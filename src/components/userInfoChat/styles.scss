@@ -1,0 +1,32 @@
+@import '../../../styles/main.scss';
+
+.user {
+    display: flex;
+    background-color: white;
+    cursor: pointer;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 8px;
+    margin: 12px 0;
+    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+
+
+    &:hover {
+        background-color: aliceblue;
+    }
+
+    &__info {
+      margin-left: 20px;
+
+      &_name {
+        @include h3;
+      }
+    }
+
+    &__logo {
+      height: 47px;
+      width: 47px;
+      background-color: #bbb;
+      border-radius: 50%;
+    } 
+  }

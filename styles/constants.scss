@@ -1,0 +1,37 @@
+$white: #fff;
+$black: #000;
+$purple: #706DFB;
+$bgr_3: #FFFFFF;
+$bgr_4: #DEE2E3;
+
+$text_color_1: #8B999D;
+$text_color_2: #FFFFFF;
+$text_color_3: #4C585B;
+
+$button_color_1: #4C585B;
+$button_color_2: #4C585B;
+$button_color_3: #4C585B;
+$button_color_4: #4C585B;
+
+$stroke_1: #DFDFDF;
+
+$errorColor: #ff2f2f;
+
+@mixin h1 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 40px;
+}
+
+@mixin h2 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+@mixin h3 {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+}
+
