@@ -13,16 +13,16 @@
     &__text {
         color: $black;
         text-decoration: none;
-    
-        &:visited {
-          color: inherit;
-        }
+    }
+
+    &__text:visited {
+        color: inherit;
     }
 
     &_purple {
         background-color: $purple;
         color: $white;
         margin-top: 40px;
-        border: none;
-    }  
+        border: 0;
+    }
 }
