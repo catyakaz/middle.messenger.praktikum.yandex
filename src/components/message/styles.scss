@@ -1,28 +1,28 @@
 @import '../../../styles/main.scss';
 
-$marginMessage: 15px;
+$margin-message: 15px;
 
 .message {
   font-size: 10px;
   width: 100px;
   padding: 5px;
-  margin-top: $marginMessage;
-  margin-bottom: $marginMessage;
+  margin-top: $margin-message;
+  margin-bottom: $margin-message;
 
   &__user_type_auth {
-    margin-right: $marginMessage;
+    margin-right: $margin-message;
     border-radius: 5px 0 5px 5px;
     border: 1px solid #eaecf0;
     align-self: flex-end;
-    background-color: #ffffff;
-    color: #9099ad;
+    background-color: $white;
+    color: $dark-grey-blue;
   }
 
   &__user_type_notAuth {
-    margin-left: $marginMessage;
+    margin-left: $margin-message;
     background-color: $purple;
-    border-radius: 0 5px 5px 5px;
+    border-radius: 0 5px 5px;
     align-self: flex-start;
-    color: #ffffff;
+    color: $white;
   }
 }

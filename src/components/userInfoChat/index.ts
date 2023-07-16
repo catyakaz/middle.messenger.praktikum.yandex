@@ -1,0 +1,1 @@
+export { UserInfoChat } from './userInfoChat';

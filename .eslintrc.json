@@ -1,0 +1,12 @@
+{
+  "extends": ["airbnb-typescript/base"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+    },
+  "plugins": ["@typescript-eslint", "import"],
+  "rules": {
+    "max-len": [2, 110],
+    "@typescript-eslint/no-unused-vars": 2
+  }
+}

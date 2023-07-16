@@ -1,5 +1,4 @@
 ### Учебный проект: Чат мессенджера
-### Спринт 1
 
 ### Прототипы экранов в Figma:
 (https://www.figma.com/file/0u1x2z8G10BXqW0K2XMB6B/Chat?type=design&node-id=0-1&t=IkXIc2yIFgiFwjDv-0)
@@ -47,3 +46,10 @@ npm run start
 ```bash
 npm run dev
 ```
+
+## Sprint 2
+
+- Реализован компонентный подход с помощью EventBus и компонента Block
+- Добавлены: ts, ESLint, Stylelint
+- Работает валидация на формы по submit и blur
+- Добавлен класс HTTPTransport для работы с запросами
