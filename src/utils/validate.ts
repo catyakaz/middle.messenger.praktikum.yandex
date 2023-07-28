@@ -22,9 +22,9 @@ const addError = (
 };
 
 
-export const handleSubmit = (event: Event): void => {
+export const handleSubmit = (event: Event): any  => {
   event.preventDefault();
-  const inputValue: Record<string, string> = {};
+  const inputValue: any = {};
   const inputList = document.querySelectorAll('.input');
 
   //прописываем any, а не HTMLInputElement, чтобы можно было добавить input.value
@@ -40,6 +40,8 @@ export const handleSubmit = (event: Event): void => {
   });
 
   console.log(inputValue);
+
+  return inputValue;
 };
 
 export const focus = (event: Event): void => {

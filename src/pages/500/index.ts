@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import { Error500Tmpl } from './500.tmpl';
 import { ErrorBlock } from '../../components/error';
 

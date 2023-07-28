@@ -1,0 +1,1 @@
+export { PopupDeleteUser } from './popupDeleteUser';

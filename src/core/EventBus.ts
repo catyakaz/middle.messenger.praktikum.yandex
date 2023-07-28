@@ -1,11 +1,7 @@
 export default class EventBus {
-  readonly listeners: Record<string, Function[]> = {};
+  listeners: Record<string, Function[]> = {};
 
-  constructor() {
-    this.listeners = {};
-  }
-
-  public on(event: string, callback: Function) {
+  on(event: string, callback: (...args: any[]) => any): void {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
@@ -13,7 +9,7 @@ export default class EventBus {
     this.listeners[event].push(callback);
   }
 
-  public off(event: string, callback: Function) {
+  off(event: string, callback: (...args: any[]) => any): void {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
@@ -23,13 +19,17 @@ export default class EventBus {
     );
   }
 
-  public emit(event: string, ...args: string[]) {
+  emit(event: string, ...args: any[]): void {
     if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+      return;
     }
 
-    this.listeners[event].forEach(function (listener) {
+    this.listeners[event].forEach(listener => {
       listener(...args);
     });
+  }
+
+  destroy() {
+    this.listeners = {};
   }
 }

@@ -3,62 +3,81 @@ import './styles.scss';
 
 import { Input } from '../../components/input';
 import { UserInfoChat } from '../../components/userInfoChat';
-import { Message } from '../../components/message';
-import srcImg from './img/edit-profile-icon.png';
-import moreImg from './img/more-icon.png';
-import { CHATS, MESSAGES } from './stub_messages';
+import srcImg from '../../../static/icon/edit-profile-icon.png';
+import { getChatUsers } from '../../controllers/ChatsControllers';
 
 import './styles.scss';
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import { ChatTmpl } from './chat.tmpl';
-import { blur, focus } from '../../utils/validate';
+import { Button } from '../../components/button';
+import { PopupAddNewChat } from '../../components/popupAddNewChat';
+import { withStore } from '../../core/withStore';
+import { StoreApp } from '../../core/Store';
+import { ChatContent } from '../../components/chatContent';
+import { PopupAddUser } from '../../components/popupAddUser';
+import { ChatList } from '../../types';
 
 const chat = Handlebars.compile(ChatTmpl);
 
-export class Chat extends Block {
+export class ChatComponent extends Block {
   constructor(props: {}) {
-    const inputSearch = new Input({
+
+    super( {
+      srcImg,
+      ...props,
+    });
+  }
+
+  init() {
+    this.children.inputSearch = new Input({
       name: 'search',
       type: 'search',
       placeholder: 'Поиск...',
       inputClass: 'input_search',
     });
 
-    const inputMessage = new Input({
-      name: 'message',
-      type: 'text',
-      placeholder: 'Печатай...',
-      inputClass: 'input_message',
-      inputContainerClass: 'input__container_message',
+
+    this.children.chatContent = new ChatContent({});
+
+    this.children.buttonCreateChat = new Button({
+      buttonClass: 'chat__button_create',
+      buttonText: 'Создать чат',
       events: {
-        focusin: (e) => focus(e),
-        focusout:(e) => blur(e),
+        click: () => {
+          StoreApp.dispatch({ popups: { newChat: true }, openedNewChat: true });
+        },
       },
     });
 
-    const userInfoChat = CHATS.map((c) => new UserInfoChat({
-      name: c.name,
-      message: c.message,
-    }));
+    this.children.modalAddUser = new PopupAddUser({});
+    this.children.modalNewChat =  new PopupAddNewChat({})  ;
+  }
 
-    const messageChat = MESSAGES.map((message) => new Message({
-      messageClass: message.messageClass,
-      name: message.name,
-      text: message.text,
-    }));
+  protected componentDidUpdate(_: any, newProps: any): boolean {
+    this.children.userInfoChat = newProps.chatList?.map((c: ChatList) => {
+      return new UserInfoChat({
+        name: c.title,
+        events: {
+          click: () => {
+            getChatUsers(c.id);
 
-    super( {
-      inputSearch,
-      inputMessage,
-      userInfoChat,
-      messageChat,
-      srcImg,
-      moreImg,
-      ...props,
+            StoreApp.dispatch({
+              selectedChat: {
+                title: c.title,
+                id: c.id,
+              },
+            });
+          },
+        },
+      });
     });
+
+    return true;
   }
 
   render() {
     return this.compile(chat, this.props);
   }
 }
+
+export const Chat = withStore(ChatComponent);

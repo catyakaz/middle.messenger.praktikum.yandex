@@ -1,26 +1,21 @@
 import Handlebars from 'handlebars';
 
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import { Button } from '../button';
 import { Input } from '../input';
 import { LinkButton } from '../linkButton';
+import { signUp } from '../../controllers/AuthController';
 
 import './styles.scss';
 
 import { SignInContentTmpl } from './signInContent.tmpl';
 import { blur, focus, handleSubmit } from '../../utils/validate';
+import { SignUpData } from '../../types';
 
 const signIn = Handlebars.compile(SignInContentTmpl);
 
 export class SignInContent extends Block {
   constructor(props: {}) {
-    const button = new Button({
-      buttonClass: 'button_purple',
-      buttonText: 'Зарегистрироваться',
-      events: {
-        click: (e) => handleSubmit(e),
-      },
-    });
 
     const inputLogin = new Input({
       name: 'login',
@@ -88,7 +83,6 @@ export class SignInContent extends Block {
     });
 
     super( {
-      button,
       inputLogin,
       inputPassword,
       inputEmail,
@@ -97,6 +91,36 @@ export class SignInContent extends Block {
       inputPhone,
       linkButton,
       ...props });
+  }
+
+  init() {
+    this.children.button = new Button({
+      buttonClass: 'button_purple',
+      buttonText: 'Зарегистрироваться',
+      events: {
+        click: (evt) => this.onSubmit(evt),
+      },
+    });
+  }
+
+  onSubmit(evt: Event) {
+    evt.preventDefault();
+
+    const data = handleSubmit(evt) as SignUpData;
+
+    console.log(data);
+    if (data) {
+      const newData = {
+        first_name: data.first_name,
+        second_name: data.second_name,
+        login: data.login,
+        email: data.email,
+        password: data.password,
+        phone: data.phone,
+      };
+
+      signUp(newData).then();
+    }
   }
 
   render() {

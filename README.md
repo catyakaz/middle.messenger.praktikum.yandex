@@ -9,22 +9,22 @@ https://chat-messenger-praktikum.netlify.app
 ### Ссылки на страницы:
 
 ## Вход:
-https://chat-messenger-praktikum.netlify.app/login
+https://chat-messenger-praktikum.netlify.app
 
 ## Авторизация:
 https://chat-messenger-praktikum.netlify.app/signin
 
 ## Профиль:
-https://chat-messenger-praktikum.netlify.app/profile
+https://chat-messenger-praktikum.netlify.app/settings
 
 ## Чат:
-https://chat-messenger-praktikum.netlify.app/
+https://chat-messenger-praktikum.netlify.app/messenger
 
 ## 404:
-https://chat-messenger-praktikum.netlify.app/404
+https://chat-messenger-praktikum.netlify.app/error404
 
 ## 500:
-https://chat-messenger-praktikum.netlify.app/500
+https://chat-messenger-praktikum.netlify.app/error500
 
 
 ### Команды для запуска:
@@ -53,3 +53,9 @@ npm run dev
 - Добавлены: ts, ESLint, Stylelint
 - Работает валидация на формы по submit и blur
 - Добавлен класс HTTPTransport для работы с запросами
+
+## Sprint 3
+
+- Добавлен роутинг в проект
+- Подключен HTTP API чатов, сообщений, информации о пользователях, авторизации и регистрации
+- Подключен WebSocket для работы с real-time сообщениями.

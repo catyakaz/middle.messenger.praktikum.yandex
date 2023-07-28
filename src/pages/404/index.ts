@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import { Error404Tmpl } from './404.tmpl';
 import { ErrorBlock } from '../../components/error';
 
