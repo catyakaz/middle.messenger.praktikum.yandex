@@ -16,6 +16,8 @@ import { StoreApp } from '../../core/Store';
 import { ChatContent } from '../../components/chatContent';
 import { PopupAddUser } from '../../components/popupAddUser';
 import { ChatList } from '../../types';
+import { LinkButton } from '../../components/linkButton';
+import Router from '../../routing/Router';
 
 const chat = Handlebars.compile(ChatTmpl);
 
@@ -50,7 +52,17 @@ export class ChatComponent extends Block {
     });
 
     this.children.modalAddUser = new PopupAddUser({});
-    this.children.modalNewChat =  new PopupAddNewChat({})  ;
+    this.children.modalNewChat =  new PopupAddNewChat({});
+    this.children.linkToSettings = new LinkButton({
+      linkClass: 'sidebar__link',
+      contentImg: srcImg,
+      events: {
+        click: (e: Event) => {
+          e.preventDefault();
+          Router.go('/settings');
+        },
+      },
+    });
   }
 
   protected componentDidUpdate(_: any, newProps: any): boolean {

@@ -7,8 +7,8 @@ import './styles.scss';
 
 interface LinkButtonProps {
   linkClass?: string,
-  href: string,
   linkText: string,
+  content: string,
   events?: { click: (e: Event) => void };
 }
 
@@ -20,6 +20,7 @@ export class LinkButtonComponent extends Block {
   }
 
   render() {
+    console.log('props', this.props);
     return this.compile(linkButton, this.props);
   }
 }

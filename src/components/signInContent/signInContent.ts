@@ -11,6 +11,7 @@ import './styles.scss';
 import { SignInContentTmpl } from './signInContent.tmpl';
 import { blur, focus, handleSubmit } from '../../utils/validate';
 import { SignUpData } from '../../types';
+import Router from '../../routing/Router';
 
 const signIn = Handlebars.compile(SignInContentTmpl);
 
@@ -79,7 +80,12 @@ export class SignInContent extends Block {
 
     const linkButton = new LinkButton({
       linkText:'Уже есть аккаунт?',
-      href: '/login',
+      events: {
+        click: (e: Event) => {
+          e.preventDefault();
+          Router.go('/');
+        },
+      },
     });
 
     super( {
