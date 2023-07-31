@@ -23,3 +23,15 @@ $lightsalmon: #FFA07A;
     line-height: 20px;
 }
 
+@mixin h4 {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+@mixin h5 {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+}
+

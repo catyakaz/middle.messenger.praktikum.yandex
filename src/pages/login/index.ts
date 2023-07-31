@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 
 import './styles.scss';
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import { LoginTmpl } from './login.tmpl';
 import { LoginContent } from '../../components/loginContent';
 

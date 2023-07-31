@@ -1,20 +1,27 @@
 import Handlebars from 'handlebars';
 
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import { Input } from '../input';
 import { Button } from '../button';
 import { LinkButton } from '../linkButton';
+import { withStore } from '../../core/withStore';
 
 import './styles.scss';
-
+import { Avatar } from '../avatar';
 import { ProfileContentTmpl } from './profileContent.tmpl';
 import { blur, focus, handleSubmit } from '../../utils/validate';
+import { logout } from '../../controllers/AuthController';
+import { changeUserPassword, changeUserProfile } from '../../controllers/UsersControllers';
+
+import { UserProfile } from '../../types';
 
 const profileContent = Handlebars.compile(ProfileContentTmpl);
 
-export class ProfileContent extends Block {
-  constructor(props: {}) {
+export class ProfileContentComponent extends Block {
+  constructor(props: { user: UserProfile }) {
+
     const inputLogin = new Input({
+      value: props.user.login,
       name: 'login',
       type: 'text',
       placeholder: 'Логин',
@@ -27,6 +34,7 @@ export class ProfileContent extends Block {
     });
 
     const inputPhone = new Input({
+      value: props.user.phone,
       name: 'phone',
       type: 'phone',
       placeholder: 'Телефон',
@@ -39,6 +47,7 @@ export class ProfileContent extends Block {
     });
 
     const inputEmail = new Input({
+      value: props.user.email,
       name: 'email',
       type: 'email',
       placeholder: 'Email',
@@ -51,6 +60,7 @@ export class ProfileContent extends Block {
     });
 
     const inputFirstName = new Input({
+      value: props.user.first_name,
       name: 'first_name',
       type: 'text',
       placeholder: 'Имя',
@@ -63,6 +73,7 @@ export class ProfileContent extends Block {
     });
 
     const inputSecondName = new Input({
+      value: props.user.second_name,
       name: 'second_name',
       type: 'text',
       placeholder: 'Фамилия',
@@ -75,6 +86,7 @@ export class ProfileContent extends Block {
     });
 
     const inputDisplayName = new Input({
+      value: props.user.display_name,
       name: 'display_name',
       type: 'text',
       placeholder: 'Имя в аккаунте',
@@ -82,15 +94,8 @@ export class ProfileContent extends Block {
       inputContainerClass: 'input__container_profile',
     });
 
-    const inputAvatar = new Input({
-      name: 'avatar',
-      type: 'url',
-      placeholder: 'Аватар',
-      inputClass: 'input_profile',
-      inputContainerClass: 'input__container_profile',
-    });
-
     const inputNewPassword = new Input({
+      value: props.user.newPassword,
       name: 'newPassword',
       type: 'password',
       placeholder: 'Новый пароль',
@@ -103,6 +108,7 @@ export class ProfileContent extends Block {
     });
 
     const inputOldPassword = new Input({
+      value: props.user.oldPassword,
       name: 'oldPassword',
       type: 'password',
       placeholder: 'Старый пароль',
@@ -116,18 +122,16 @@ export class ProfileContent extends Block {
 
     const linkButton = new LinkButton({
       linkText:'Выйти',
-      href: '/login',
-    });
-
-    const button = new Button({
-      buttonText:'Применить',
-      buttonClass: 'button_purple',
       events: {
-        click: (e) => handleSubmit(e),
+        click: (e: Event) => {
+          e.preventDefault();
+          logout();
+        },
       },
     });
 
     super({
+      name: props.user.first_name,
       inputFirstName,
       inputEmail,
       inputPhone,
@@ -136,13 +140,38 @@ export class ProfileContent extends Block {
       inputLogin,
       inputNewPassword,
       inputOldPassword,
-      inputAvatar,
       linkButton,
-      button,
       ...props });
+  }
+
+  init() {
+    this.children.avatar = new Avatar({});
+    this.children.button = new Button({
+      buttonText:'Применить',
+      buttonClass: 'button_purple',
+      events: {
+        click: (e) => this.onSubmit(e),
+      },
+    });
+  }
+
+  onSubmit(evt: Event) {
+    evt.preventDefault();
+
+    const data = handleSubmit(evt);
+
+    if (data) {
+      changeUserProfile(data);
+    }
+
+    if (data.oldPassword && data.newPassword) {
+      changeUserPassword(data as UserProfile);
+    }
   }
 
   render() {
     return this.compile(profileContent, this.props);
   }
 }
+
+export const ProfileContent = withStore(ProfileContentComponent);

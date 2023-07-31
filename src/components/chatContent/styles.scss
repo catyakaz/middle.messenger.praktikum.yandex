@@ -1,0 +1,61 @@
+@import '../../../styles/main.scss';
+
+.chat {
+  background-color: $white;
+  left: 324px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+
+  &__header, &__footer, &__main {
+    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    margin: 12px 10px;
+  }
+
+  &__main {
+    overflow-y: scroll;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__content {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__no_selected {
+    margin: auto;
+  }
+
+  &__content__footer {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__more {
+    background: url('./img/more-icon.png') 50% no-repeat;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    margin-top: 0;
+  }
+
+  &__send_message_button {
+    background: url('./img/send-icon.png') 50% no-repeat $purple;
+    border: 0;
+    width: 40px;
+    height: 48px;
+    margin-top: 0;
+    align-self: flex-start;
+  }
+
+  &__button_create {
+    margin-left: 12px;
+    margin-top: -10px;
+  }
+}

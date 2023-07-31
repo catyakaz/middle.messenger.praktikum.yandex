@@ -1,0 +1,69 @@
+@import '../../../styles/main.scss';
+
+@mixin buttonInModal {
+  margin-top: 0;
+  padding: 10px;
+  background-color: $purple;
+  color: $white;
+  width: 160px;
+}
+
+.popup__new_chat {
+  visibility: visible;
+  opacity: 1;
+  transition: 0.8s linear;
+  width: 100%;
+  height: 100vh;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__container {
+    width: 430px;
+    height: auto;
+    margin:  auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    background-color: $white;
+    z-index: 2;
+    position: relative;
+    padding: 20px 0;
+  }
+
+  &__close {
+    margin-top: 0;
+    background: url('../../../static/icon/Close_icon.png') 50% no-repeat;
+    border: 0;
+    cursor: pointer;
+    height: 40px;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    transition: color .15s ease-in-out;
+    width: 40px;
+    z-index: 10;
+  }
+
+  &__input_create_chat {
+    width: 80%;
+    display: flex;
+  }
+
+  &__title {
+    @include h3;
+  }
+
+  &__create_chat_button {
+    @include buttonInModal;
+  }
+}

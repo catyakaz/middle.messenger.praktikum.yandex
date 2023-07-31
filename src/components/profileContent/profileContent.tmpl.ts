@@ -1,13 +1,12 @@
 export const ProfileContentTmpl = `<div class='profile'>
-<div class='logo'></div>
-<div class='name'>Катя</div>
+{{{ avatar }}}
+<div class='name'>{{ name }}</div>
 {{{ inputFirstName }}}
 {{{ inputSecondName }}}
 {{{ inputDisplayName }}}
 {{{ inputLogin }}}
 {{{ inputEmail }}}
 {{{ inputPhone }}}
-{{{ inputAvatar }}}
 {{{ inputOldPassword }}}
 {{{ inputNewPassword }}}
 <div class='button__container'>

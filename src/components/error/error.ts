@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 
 import { ErrorTmpl } from './error.tmpl';
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import { LinkButton } from '../linkButton';
 
 import './styles.scss';
