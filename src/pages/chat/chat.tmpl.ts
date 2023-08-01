@@ -2,9 +2,7 @@ export const ChatTmpl =  `<div>
 <aside class="sidebar">
 <div class="sidebar__container">
 <div class='sidebar__main'>
-<a class='sidebar__link' href='/settings'> 
-<img src={{ srcImg }} alt='изменить' class='img' /> 
-</a>
+{{{ linkToSettings }}}
 {{{ inputSearch }}}
 </div>
 {{{ buttonCreateChat }}}

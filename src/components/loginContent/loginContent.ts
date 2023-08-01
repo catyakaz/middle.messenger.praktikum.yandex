@@ -11,6 +11,7 @@ import './styles.scss';
 
 import { LoginContentTmpl } from './loginContent.tmpl';
 import { SignInData } from '../../types';
+import Router from '../../routing/Router';
 
 const login = Handlebars.compile(LoginContentTmpl);
 
@@ -40,7 +41,12 @@ export class LoginContent extends Block {
 
     const linkButton = new LinkButton({
       linkText:'Нет аккаунта?',
-      href: '/signin',
+      events: {
+        click: (e: Event) => {
+          e.preventDefault();
+          Router.go('/signin');
+        },
+      },
     });
 
     super( {

@@ -5,6 +5,7 @@ import Block from '../../core/Block';
 import { LinkButton } from '../linkButton';
 
 import './styles.scss';
+import Router from '../../routing/Router';
 
 interface ErrorProps {
   title: string,
@@ -18,8 +19,13 @@ export class ErrorBlock extends Block {
 
     const linkButton = new LinkButton({
       linkText:'Назад к чатам',
-      href: '/',
       linkClass: 'link_purple',
+      events: {
+        click: (e: Event) => {
+          e.preventDefault();
+          Router.go('/messenger');
+        },
+      },
     });
 
     super({ linkButton, ...props });
